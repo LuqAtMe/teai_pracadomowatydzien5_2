@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Weather App</title>
+
+</head>
+<body>
+
+<h3>City Name</h3>
+<form method="post" th:action="@{/find}" th:object="${newCity}">
+    Find City: <input type="text" th:field="*{title}"><br><br>
+    <input type="submit" value="Find"><br>
+</form>
+<br>
+
+<h2>
+    <form th:action="@{/city}" th:object="${weatherInfo}" method="get">
+        <p th:text="*{title}"></p>
+        <p th:text="*{woeid}"></p>
+    </form>
+</h2>
+<p>*WOEID - Where On Earth IDentifier</p>
+
+<table th:action="@{/city}" th:object="${weatherDetails}">
+    <tr>
+        <th>min_temp</th>
+        <th>max_temp</th>
+        <th>the_temp</th>
+        <th>Image</th>
+    </tr>
+    <tr>
+
+        <td th:text="*{getMinTemp()}"></td>
+        <td th:text="*{getMaxTemp()}"></td>
+        <td th:text="*{getTheTemp()}"></td>
+        <td><img th:src="*{getWeatherStateAbbrSrc()}"></td>
+    </tr>
+</table>
+
+</body>
+</html>
